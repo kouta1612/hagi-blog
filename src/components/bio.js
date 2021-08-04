@@ -8,6 +8,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -51,6 +53,24 @@ const Bio = () => {
           </a>
         </p>
       )}
+      <div style={{ position: "relative", marginTop: "10px", }}　>
+        <div style={{ position: "absolute", width: "100%", top: "0", left: "0", }} >
+          <a style={{ boxShadow: "none", }} href={`https://twitter.com/${social?.twitter || ``}`}>
+            <FontAwesomeIcon
+              style={{ height: "1.5em", width: "1.5em", marginRight: "5", }}
+              color="#3eaded"
+              icon={faTwitter}
+            />
+          </a>
+          <a style={{ boxShadow: "none",}} href="https://github.com/kouta1612">
+            <FontAwesomeIcon
+              style={{ height: "1.5em", width: "1.5em", marginRight: "5", }}
+              color="#333"
+              icon={faGithub}
+            />
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
