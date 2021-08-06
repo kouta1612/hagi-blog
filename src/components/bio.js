@@ -44,27 +44,24 @@ const Bio = () => {
         quality={95}
         alt="Profile picture"
       />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
-          </a>
-        </p>
-      )}
-      <div style={{ position: "relative", marginTop: "10px", }}　>
-        <div style={{ position: "absolute", width: "100%", top: "0", left: "0", }} >
-          <a style={{ boxShadow: "none", }} href={`https://twitter.com/${social?.twitter || ``}`}>
+      <div>
+        {author?.name && (
+          <p>
+            Written by <strong>{author.name}.</strong> {author?.summary || null}
+            {` `}
+          </p>
+        )}
+        <div>
+          <a href={`https://twitter.com/${social?.twitter || ``}`} target="blank">
             <FontAwesomeIcon
-              style={{ height: "1.5em", width: "1.5em", marginRight: "5", }}
+              style={{ height: "1.5em", width: "1.5em", marginRight: "5" }}
               color="#3eaded"
               icon={faTwitter}
             />
           </a>
-          <a style={{ boxShadow: "none",}} href="https://github.com/kouta1612">
+          <a href="https://github.com/kouta1612" target="blank">
             <FontAwesomeIcon
-              style={{ height: "1.5em", width: "1.5em", marginRight: "5", }}
+              style={{ height: "1.5em", width: "1.5em", marginRight: "5" }}
               color="#333"
               icon={faGithub}
             />
