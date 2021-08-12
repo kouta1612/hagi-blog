@@ -6,7 +6,7 @@ module.exports = {
       summary: `I'm Web Developer`,
     },
     description: `This is Hagi Blog Site`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://hagiblog.gatsbyjs.io/`,
     social: {
       twitter: `ohagi_1182`,
     },
@@ -21,6 +21,7 @@ module.exports = {
         }
       }
     },
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
