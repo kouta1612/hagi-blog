@@ -2,11 +2,11 @@ module.exports = {
   siteMetadata: {
     title: `Hagi Blog`,
     author: {
-      name: `Hagi`,
-      summary: `I'm Web Developer`,
+      name: `ハギ`,
+      summary: `都内のベンチャーでWebエンジニアをしています。`,
     },
-    description: `This is Hagi Blog Site`,
-    siteUrl: `https://hagiblog.gatsbyjs.io/`,
+    description: `こんにちは、ハギと言います。よろしくお願いします。`,
+    siteUrl: `https://hagi-tech.com/`,
     social: {
       twitter: `ohagi_1182`,
     },
@@ -128,8 +128,5 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

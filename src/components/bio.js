@@ -45,12 +45,9 @@ const Bio = () => {
         alt="Profile picture"
       />
       <div>
-        {author?.name && (
-          <p>
-            Written by <strong>{author.name}.</strong> {author?.summary || null}
-            {` `}
-          </p>
-        )}
+        <div>
+          <p>{author?.summary || null}</p>
+        </div>
         <div>
           <a href={`https://twitter.com/${social?.twitter || ``}`} target="blank">
             <FontAwesomeIcon
