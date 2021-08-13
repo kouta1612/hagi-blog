@@ -36,8 +36,9 @@ GatsbyJSの場合は、初期費用と運用費が下記に示した金額だけ
 ## 実装したこと
 このブログは[gatsby-starter-blog](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)をもとに、ブログを作成しています。
 localで下記コマンドを実行すると、簡単にブログを作成出来ます。
-`gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
-`
+```terminal
+gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
+```
 ブログを作成するまでにやったことは、以下となります。
 ```txt
 ・GatsbyCloudとの連携
@@ -54,9 +55,10 @@ localで下記コマンドを実行すると、簡単にブログを作成出来
 ## これから実装すること
 タスク管理は、GitHub上にあるProjectsページで行っています。
 こんな感じのよくあるかんばん方式で運用しています。
+
 ![github-projects](./github-projects.png)
 
-優先度の高い順にあげると以下のような感じです。
+これから実装することを優先度の高い順にあげると、以下のような感じになります。
 ```txt
 ・GatsbyCloudのホスティングサービスとしてFirebaseを利用する
 ・GoogleSearchConsoleを追加
@@ -69,7 +71,7 @@ localで下記コマンドを実行すると、簡単にブログを作成出来
 ・TailwindCSSかCSS Modulesに書き直す
 ・既存のJavascriptをTypescriptに書き直す
 ```
-既にGatsbyCloudにブログサイトをデプロイしているのですが、	ドメインがGatsbyCloud独自のフォーマットになっているんですよね。
+既にGatsbyCloudにブログサイトをデプロイしているのですが、ドメインがGatsbyCloud独自のフォーマットになっているんですよね。
 独自ドメインに切り替えたいのですが、GatsbyCloudだけでは独自ドメインに切り替え出来ないそうです。切り替えるにはGatsbyCloudとホスティングサービスとを連携する必要があるみたいです。僕の場合はGoogle先生に多大なる信頼をおいているので、Firebaseホスティングサービスと連携しようかと考えています。
 ドメインはもう[Google Domain](https://domains.google.com/)で取得できているので、この記事を書いたあとにFirebaseと連携して、ドメインを切り替えれば完了です。この記事が上がっている頃には完了してると思います。
 ブログのページ以外にもプロフィールページやお問い合わせページを作成したいですね。
