@@ -8,7 +8,7 @@ description: "なぜGatsbyJSでブログを開設して、どんな開発を今�
 結論から言うと、安く運用出来てカスタマイズがしやすいからです。
 実は2年程前にWordPressでブログを運用していたのですが、初期費用と運用費だけで下記に示した金額くらいかかっていました。合計38,500円、年額15,200円。
 気づいたらブログは閉鎖されてました。。
-```txt
+```
 ・初期費用
 WordPressテーマ：20,000円
 レンタルサーバー：3,300円
@@ -20,7 +20,7 @@ WordPressテーマ：20,000円
 そこで、色々調べていく中でSSG(Static Site Generation)というのがブログサイトとの相性が良いと知り、GatsbyJSの存在を知りました。
 SSGとは簡単に言うと、リクエスト時ではなくビルド時にDBやAPIからデータを取得して、レンダリングを行う技術です。詳しくは[こちらのサイト](https://zenn.dev/luvmini511/articles/1523113e0dec58#2.-ssg)が分かりやすかったです。
 GatsbyJSの場合は、初期費用と運用費が下記に示した金額だけで済みます。
-```txt
+```
 ・初期費用
 なし
 ・運用費
@@ -36,11 +36,11 @@ GatsbyJSの場合は、初期費用と運用費が下記に示した金額だけ
 ## 実装したこと
 このブログは[gatsby-starter-blog](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)をもとに、ブログを作成しています。
 localで下記コマンドを実行すると、簡単にブログを作成出来ます。
-```terminal
+```
 gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
 ```
 ブログを作成するまでにやったことは、以下となります。
-```txt
+```
 ・GatsbyCloudとの連携
 ・GitHubにpushしたら自動でGatsbyCloudにデプロイされるよう設定
 ・プロフィール情報の変更、不要な画像を削除
@@ -59,7 +59,7 @@ gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
 ![github-projects](./github-projects.png)
 
 これから実装することを優先度の高い順にあげると、以下のような感じになります。
-```txt
+```
 ・GatsbyCloudのホスティングサービスとしてFirebaseを利用する
 ・GoogleSearchConsoleを追加
 ・プロフィールページを追加
