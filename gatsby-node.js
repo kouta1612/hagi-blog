@@ -2,14 +2,6 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const fs = require("fs")
 
-exports.onPostBuild = () => {
-  fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err) => {
-    if (err) {
-      throw err
-    }
-  })
-}
-
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
@@ -121,4 +113,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String
     }
   `)
+}
+
+exports.onPostBuild = () => {
+  fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err) => {
+    if (err) {
+      throw err
+    }
+  })
 }
