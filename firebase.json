@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "hagi-blog",
+    "site": "hagi-tech",
     "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "headers": [
