@@ -29,7 +29,6 @@ const Seo = ({ description, lang, meta, title }) => {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
-  const ogImageUrl = `${site.siteMetadata.siteUrl}src/images/profile-pic.jpg`
 
   return (
     <Helmet
@@ -50,10 +49,6 @@ const Seo = ({ description, lang, meta, title }) => {
         {
           property: `og:description`,
           content: metaDescription,
-        },
-        {
-          property: `og:image`,
-          content: ogImageUrl,
         },
         {
           property: `og:type`,
