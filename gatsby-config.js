@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Hagi Blog`,
+    title: `hagi-tech`,
     author: {
       name: `ハギ`,
       summary: `都内のベンチャーでWebエンジニアをしています。`,
     },
-    description: `こんにちは、ハギと言います。よろしくお願いします。`,
+    description: `都内のベンチャーでWebエンジニアをしています。`,
     siteUrl: `https://hagi-tech.com/`,
     social: {
       twitter: `ohagi_1182`,
@@ -117,13 +117,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Hagi Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/profile-pic.jpg`,
       },
     },
     `gatsby-plugin-react-helmet`,
