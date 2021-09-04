@@ -12,29 +12,27 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="ホーム" />
       <Bio />
+      <h2>ブログ一覧</h2>
+      <hr />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           return (
-            <div>
-              <h2>ブログ一覧</h2>
-              <hr />
-              <li key={post.fields.slug}>
-                <article
-                  className="post-list-item"
-                  itemScope
-                  itemType="http://schema.org/Article"
-                >
-                  <header>
-                    <h2>
-                      <Link to={post.fields.slug} itemProp="url">
-                        <span itemProp="headline">{post.frontmatter.title}</span>
-                      </Link>
-                    </h2>
-                    <small>{post.frontmatter.date}</small>
-                  </header>
-                </article>
-              </li>
-            </div>
+            <li key={post.fields.slug}>
+              <article
+                className="post-list-item"
+                itemScope
+                itemType="http://schema.org/Article"
+              >
+                <header>
+                  <h2>
+                    <Link to={post.fields.slug} itemProp="url">
+                      <span itemProp="headline">{post.frontmatter.title}</span>
+                    </Link>
+                  </h2>
+                  <small>{post.frontmatter.date}</small>
+                </header>
+              </article>
+            </li>
           )
         })}
       </ol>
