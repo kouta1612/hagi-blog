@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+  const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.nodes
   return (
     <Layout location={location} title={siteTitle}>
@@ -14,7 +14,6 @@ const BlogIndex = ({ data, location }) => {
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
           return (
             <div>
               <h2>ブログ一覧</h2>
@@ -28,7 +27,7 @@ const BlogIndex = ({ data, location }) => {
                   <header>
                     <h2>
                       <Link to={post.fields.slug} itemProp="url">
-                        <span itemProp="headline">{title}</span>
+                        <span itemProp="headline">{post.frontmatter.title}</span>
                       </Link>
                     </h2>
                     <small>{post.frontmatter.date}</small>
@@ -54,7 +53,6 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
-        excerpt
         fields {
           slug
         }

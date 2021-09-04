@@ -10,6 +10,7 @@ module.exports = {
     social: {
       twitter: `ohagi_1182`,
     },
+    lang: `ja`
   },
   plugins: [
     {
@@ -27,8 +28,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/blog`,
         name: `blog`,
+        path: `${__dirname}/content/blog`,
       },
     },
     {
