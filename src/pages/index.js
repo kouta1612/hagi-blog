@@ -10,7 +10,10 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="ホーム" />
+      <Seo
+        title="ホーム"
+        description="都内のベンチャーでWebエンジニアをしています。"  
+      />
       <Bio />
       <h2>ブログ一覧</h2>
       <hr />
@@ -57,7 +60,6 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "YYYY/MM/DD")
           title
-          description
         }
       }
     }
