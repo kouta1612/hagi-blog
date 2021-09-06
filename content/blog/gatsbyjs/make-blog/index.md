@@ -2,6 +2,7 @@
 title: GatsbyJSでブログを開設してみた
 date: "2021-08-13"
 description: "なぜGatsbyJSでブログを開設して、どんな開発を今までして来たか、今後なにを開発していくのかを解説します。"
+tags: ['GatsbyJS']
 ---
 
 ## GatsbyJSを採用した背景

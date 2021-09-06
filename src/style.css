@@ -311,6 +311,20 @@ a:focus {
   margin-bottom: var(--spacing-8);
 }
 
+/* .tag {
+  margin-left: 10px;
+  border-radius: 7px;
+  background-color: #f0ecec;
+  color: #333333;
+  text-align: center;
+  padding: 0.15rem;
+}
+
+.tag:hover {
+  background: #e4e4e4;
+  cursor: pointer;
+} */
+
 /* Media queries */
 
 @media (max-width: 42rem) {

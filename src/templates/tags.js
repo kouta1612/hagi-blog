@@ -1,22 +1,21 @@
-import * as React from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+const Tags = ({ pageContext, data, location }) => {
+  const { tag } = pageContext
   const posts = data.allMarkdownRemark.nodes
+  const siteTitle = data.site.siteMetadata.title
+  const tagHeader = `【${tag}】に関する記事一覧`
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
-        title="ホーム"
-        description="都内のベンチャーでWebエンジニアをしています。"  
+        title={tagHeader}
+        description={tagHeader}
       />
-      <Bio />
-      <h2>ブログ一覧</h2>
-      <hr />
+      <h1>{tagHeader}</h1>
       <ul style={{ listStyle: `none` }}>
         {posts.map(post => {
           return (
@@ -46,16 +45,20 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-export default BlogIndex
+export default Tags
 
 export const pageQuery = graphql`
-  query {
+  query($tag: String) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] } } }
+    ) {
       nodes {
         fields {
           slug
