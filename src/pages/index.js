@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-// import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -18,7 +18,7 @@ const BlogIndex = ({ data, location }) => {
       <Bio />
       <h2>ブログ一覧</h2>
       <hr />
-      <ul style={{ listStyle: `none` }}>
+      <ul className="post-list">
         {posts.map(post => {
           return (
             <li key={post.fields.slug}>
@@ -28,17 +28,19 @@ const BlogIndex = ({ data, location }) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
+                  <GatsbyImage image={getImage(post.frontmatter.image)} alt={post.frontmatter.alt} />
+                </header>
+                <div className="content">
                   <h2>
                     <Link to={post.fields.slug} itemProp="url">
                       <span itemProp="headline">{post.frontmatter.title}</span>
                     </Link>
                   </h2>
-                  {/* <GatsbyImage image={getImage(post.frontmatter.image)} alt={post.frontmatter.alt} /> */}
                   <small>{post.frontmatter.date}</small>
                   {/* {post.frontmatter.tags.map((tag, index) => {
                     return <small key={index} className="tag">#{tag}</small>
                   })} */}
-                </header>
+                </div>
               </article>
             </li>
           )
@@ -66,15 +68,16 @@ export const pageQuery = graphql`
           date(formatString: "YYYY/MM/DD")
           title
           tags
-          # image {
-          #   childImageSharp {
-          #     gatsbyImageData(
-          #       width: 200
-          #       formats: [AUTO, WEBP, AVIF]
-          #     )
-          #   }
-          # }
-          # alt
+          image {
+            childImageSharp {
+              gatsbyImageData(
+                height: 200
+                width: 350
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+          alt
         }
       }
     }
