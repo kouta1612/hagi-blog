@@ -9,12 +9,14 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = data
+  const image = `${data.site.siteMetadata.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
 
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
+        image={image}
       />
       <article
         className="blog-post"

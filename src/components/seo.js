@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import ogp_image from "../images/cat.jpg"
 
-const Seo = ({ title, description }) => {
+const Seo = ({ title, description, image }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -14,6 +15,7 @@ const Seo = ({ title, description }) => {
               twitter
             }
             lang
+            siteUrl
           }
         }
       }
@@ -23,10 +25,12 @@ const Seo = ({ title, description }) => {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata.title
   const lang = site.siteMetadata.lang
+  const siteUrl = site.siteMetadata.siteUrl
+  const defaultImage = `${siteUrl}${ogp_image}`
 
   return (
     <Helmet
-      htmlAttributes={{lang}}
+      htmlAttributes={{ lang }}
       title={title}
       titleTemplate={`%s | ${defaultTitle}`}
       meta={[
@@ -43,12 +47,16 @@ const Seo = ({ title, description }) => {
           content: metaDescription,
         },
         {
+          property: "og:image",
+          content: image || defaultImage,
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
