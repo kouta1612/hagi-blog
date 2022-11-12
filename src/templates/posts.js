@@ -68,6 +68,7 @@ const BlogPostTemplate = ({ data, location }) => {
 
 export default BlogPostTemplate
 
+// 下記graphQLクエリで取得されるデータが、上のBlogPostTemplate関数の引数dataに渡される
 export const pageQuery = graphql`
   query BlogPostBySlug(
     $id: String!
@@ -88,6 +89,13 @@ export const pageQuery = graphql`
         date(formatString: "YYYY/MM/DD")
         description
         tags
+        image {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
