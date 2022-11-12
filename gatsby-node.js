@@ -108,13 +108,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       fields: Fields
     }
 
-    type Frontmatter {
-      title: String
-      description: String
-      date: Date @dateformat
-      tags: [String!]
-    }
-
     type Fields {
       slug: String
     }
@@ -122,7 +115,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 }
 
 exports.onPostBuild = () => {
-  fs.copyFile(`./firebase.json`, `./public/firebase.json`, (err) => {
+  fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {
     if (err) {
       throw err
     }
