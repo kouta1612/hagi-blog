@@ -87,6 +87,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
+  // Example
+  // https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization:~:text=addThirdPartySchema%20object-,Example,-exports.createSchemaCustomization
   createTypes(`
     type SiteSiteMetadata {
       author: Author
@@ -106,6 +108,14 @@ exports.createSchemaCustomization = ({ actions }) => {
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
       fields: Fields
+    }
+
+    type Frontmatter {
+      title: String
+      description: String
+      date: Date @dateformat
+      tags: [String!]
+      image: File @fileByRelativePath
     }
 
     type Fields {
