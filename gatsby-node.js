@@ -1,12 +1,13 @@
-const path = require(`path`)
+const path = require("path")
 const _ = require("lodash")
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const { createFilePath } = require("gatsby-source-filesystem")
 const fs = require("fs")
 
+// ブログページを動的に作成する
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const blogTemplate = path.resolve(`./src/templates/posts.js`)
+  const blogTemplate = path.resolve("./src/templates/posts.js")
   // const tagTemplate = path.resolve(`./src/templates/tags.js`)
 
   const result = await graphql(
@@ -34,7 +35,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      "There was an error loading your blog posts",
       result.errors
     )
     return
@@ -73,11 +74,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === "MarkdownRemark") {
     const value = createFilePath({ node, getNode })
 
     createNodeField({
-      name: `slug`,
+      name: "slug",
       node,
       value,
     })
@@ -124,8 +125,9 @@ exports.createSchemaCustomization = ({ actions }) => {
   `)
 }
 
+// ビルドが完了したときに実行される
 exports.onPostBuild = () => {
-  fs.copyFile(`./firebase.json`, `./public/firebase.json`, err => {
+  fs.copyFile("./firebase.json", "./public/firebase.json", err => {
     if (err) {
       throw err
     }
