@@ -10,20 +10,10 @@ module.exports = {
     social: {
       twitter: `ohagi_1182`,
     },
-    lang: `ja`
+    lang: `ja`,
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: ["G-3QTJM4Q2JS"],
-        pluginConfig: {
-          head: true
-        }
-      }
-    },
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    // ローカルファイルをGraphQLに取り込む
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -38,17 +28,20 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // ブログコンテンツ内容をGraphQLに取り込む
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          // 新規タブリンクを生成
           {
             resolve: "gatsby-remark-external-links",
             options: {
               target: "_blank",
-              rel: "noreferrer"
-            }
+              rel: "noreferrer",
+            },
           },
+          // レスポンシブ画像を生成
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -67,6 +60,7 @@ module.exports = {
         ],
       },
     },
+    // ローカルファイルシステムまたは外部リソース画像を最適化した状態でGraphQLに取り込む
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -135,5 +129,17 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
+    // seo
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["G-3QTJM4Q2JS"],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
   ],
 }
