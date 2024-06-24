@@ -10,28 +10,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const blogTemplate = path.resolve("./src/templates/posts.js")
   // const tagTemplate = path.resolve(`./src/templates/tags.js`)
 
-  const result = await graphql(
-    `
-      {
-        postRemark: allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
-        ) {
-          nodes {
-            id
-            fields {
-              slug
-            }
-          }
-        }
-        tagRemark: allMarkdownRemark(limit: 2000) {
-          group(field: frontmatter___tags) {
-            fieldValue
-          }
+  const result = await graphql(`{
+    postRemark: allMarkdownRemark(sort: {frontmatter: {date: ASC}}, limit: 1000) {
+      nodes {
+        id
+        fields {
+          slug
         }
       }
-    `
-  )
+    }
+    tagRemark: allMarkdownRemark(limit: 2000) {
+      group(field: {frontmatter: {tags: SELECT}}) {
+        fieldValue
+      }
+    }
+  }`)
 
   if (result.errors) {
     reporter.panicOnBuild(
