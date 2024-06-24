@@ -47,7 +47,7 @@ const Tags = ({ pageContext, data, location }) => {
 
 export default Tags
 
-export const pageQuery = graphql`query ($tag: String) {
+const pageQuery = graphql`query ($tag: String) {
   site {
     siteMetadata {
       title
@@ -70,3 +70,5 @@ export const pageQuery = graphql`query ($tag: String) {
     }
   }
 }`
+
+// export { pageQuery }
