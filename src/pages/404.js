@@ -2,14 +2,14 @@ import * as React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Header from "../components/header"
 
 const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="404: Not Found" />
+      <Header title="404: Not Found" />
       <h1>Not Found</h1>
       <p>ページが見つかりませんでした。</p>
     </Layout>

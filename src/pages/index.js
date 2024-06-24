@@ -1,17 +1,17 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import Seo from "../components/seo"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Header from "../components/header"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.nodes
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo
+      <Header
         title="ホーム"
         description="都内のベンチャーでWebエンジニアをしています。"  
       />

@@ -128,7 +128,6 @@ module.exports = {
         icon: `src/images/cat.jpg`,
       },
     },
-    `gatsby-plugin-react-helmet`,
     // seo
     {
       resolve: `gatsby-plugin-google-gtag`,

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Header from "../components/header"
 
 const Tags = ({ pageContext, data, location }) => {
   const { tag } = pageContext
@@ -11,7 +11,7 @@ const Tags = ({ pageContext, data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo
+      <Header
         title={tagHeader}
         description={tagHeader}
       />
