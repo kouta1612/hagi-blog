@@ -11,10 +11,6 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
   return (
     <Layout location={location} title={siteTitle}>
-      <Header
-        title="ホーム"
-        description="都内のベンチャーでWebエンジニアをしています。"  
-      />
       <Bio />
       <h2>ブログ一覧</h2>
       <hr />
@@ -51,6 +47,10 @@ const BlogIndex = ({ data, location }) => {
 }
 
 export default BlogIndex
+
+export const Head = () => {
+  return <Header title="ホーム" description="都内のベンチャーでWebエンジニアをしています。" />
+}
 
 export const pageQuery = graphql`{
   site {

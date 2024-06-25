@@ -9,15 +9,9 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = data
-  const image = `${data.site.siteMetadata.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Header
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-        image={image}
-      />
       <article
         className="blog-post"
         itemScope
@@ -67,6 +61,12 @@ const BlogPostTemplate = ({ data, location }) => {
 }
 
 export default BlogPostTemplate
+
+export const Head = ({data}) => {
+  const post = data.markdownRemark
+  const image = `${data.site.siteMetadata.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
+  return <Header title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={image} />
+}
 
 // 下記graphQLクエリで取得されるデータが、上のBlogPostTemplate関数の引数dataに渡される
 export const pageQuery = graphql`

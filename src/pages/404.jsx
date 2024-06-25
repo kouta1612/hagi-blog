@@ -9,7 +9,6 @@ const NotFoundPage = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Header title="404: Not Found" />
       <h1>Not Found</h1>
       <p>ページが見つかりませんでした。</p>
     </Layout>
@@ -17,6 +16,10 @@ const NotFoundPage = ({ data, location }) => {
 }
 
 export default NotFoundPage
+
+export const Head = () => {
+  return <Header title="404: Not Found" />
+}
 
 export const pageQuery = graphql`
   query {

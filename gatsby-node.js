@@ -7,8 +7,8 @@ const fs = require("fs")
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  const blogTemplate = path.resolve("./src/templates/posts.js")
-  // const tagTemplate = path.resolve(`./src/templates/tags.js`)
+  const blogTemplate = path.resolve("./src/templates/posts.jsx")
+  // const tagTemplate = path.resolve(`./src/templates/tags.jsx`)
 
   const result = await graphql(`{
     postRemark: allMarkdownRemark(sort: {frontmatter: {date: ASC}}, limit: 1000) {

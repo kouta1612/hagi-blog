@@ -11,10 +11,6 @@ const Tags = ({ pageContext, data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Header
-        title={tagHeader}
-        description={tagHeader}
-      />
       <h1>{tagHeader}</h1>
       <ul style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -46,6 +42,12 @@ const Tags = ({ pageContext, data, location }) => {
 }
 
 export default Tags
+
+export const Head = ({ pageContext }) => {
+  const { tag } = pageContext
+  const tagHeader = `【${tag}】に関する記事一覧`
+  return <Header title={tagHeader} description={tagHeader} />
+}
 
 const pageQuery = graphql`query ($tag: String) {
   site {
