@@ -7,10 +7,17 @@ date: "2021-08-13"
 tags: ['GatsbyJS']
 ---
 
+## 目次
+
+```toc
+```
+
 ## GatsbyJSを採用した背景
+
 結論から言うと、安く運用出来てカスタマイズがしやすいからです。  
 実は2年程前にWordPressでブログを運用していたのですが、初期費用と運用費だけで下記に示した金額くらいかかっていました。合計38,500円、年額15,200円。  
 気づいたらブログは閉鎖されてました。。
+
 ```
 ・初期費用
 WordPressテーマ：20,000円
@@ -19,16 +26,19 @@ WordPressテーマ：20,000円
 ドメイン代：1,200円
 レンタルサーバー：14,000円
 ```
+
 今年のはじめ頃にアウトプットも兼ねて、少額でブログを運用したいと思うようになりました。  
 そこで、色々調べていく中でSSG(Static Site Generation)というのがブログサイトとの相性が良いと知り、GatsbyJSの存在を知りました。  
 SSGとは簡単に言うと、リクエスト時ではなくビルド時にDBやAPIからデータを取得して、レンダリングを行う技術です。詳しくは[こちらのサイト](https://zenn.dev/luvmini511/articles/1523113e0dec58#2.-ssg)が分かりやすかったです。  
 GatsbyJSの場合は、初期費用と運用費が下記に示した金額だけで済みます。  
+
 ```
 ・初期費用
 なし
 ・運用費
 ドメイン代：1,400円
 ```
+
 かかるのはドメイン代だけなので、年額1,400円だけです。月に換算すると100円くらい。  
 なぜこんなに安いのかというと、クラウドサーバを無料で利用しているからです。  
 個人で運用する場合は、今の時代だと基本的に無料でサービスを享受できるのです。いい時代ですなあ。  
@@ -36,13 +46,18 @@ GatsbyJSの場合は、初期費用と運用費が下記に示した金額だけ
 カスタマイズの観点でいうと、広告の表示位置を自分で選ぶことが出来たり、独自ドメインを当て込みできるからです。要は柔軟性が良いものがいいなと思ったんですよね。  
 ライブドアブログやはてなブログは無料で運用できますが、広告の表示位置を自分で選択出来なかったり、ドメインはブログ特有のフォーマットで決められてしまいます。  
 個人的に裁量権は自分が持っておくほうが、やりがいを感じて良いのかなと。  
+
 ## 実装したこと
+
 このブログは[gatsby-starter-blog](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-blog)をもとに、ブログを作成しています。
 localで下記コマンドを実行すると、簡単にブログを作成出来ます。
-```
+
+```sh
 gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
 ```
+
 ブログを作成するまでにやったことは、以下となります。
+
 ```
 ・GatsbyCloudとの連携
 ・GitHubにpushしたら自動でGatsbyCloudにデプロイされるよう設定
@@ -52,16 +67,20 @@ gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
 ・GoogleAnalytics、SitemapXML、robotsの追加
 ・GoogleFontに変更
 ```
+
 一番ハマったのがTwitterとGitHubへのリンクを設置するときです。  
 僕はサーバサイドエンジニアなので、CSSをほとんど触ったことがありません。  
 なので、目的の位置にリンクを配置するだけでも苦労しました笑
+
 ## これから実装すること
+
 タスク管理は、GitHub上にあるProjectsページで行っています。  
 こんな感じのよくあるかんばん方式で運用しています。
 
 ![github-projects](./github-projects.png)
 
 これから実装することを優先度の高い順にあげると、以下のような感じになります。
+
 ```
 ・GatsbyCloudのホスティングサービスとしてFirebaseを利用する
 ・GoogleSearchConsoleを追加
@@ -74,6 +93,7 @@ gatsby new my-gatsby-project https://github.com/gatsbyjs/gatsby-starter-blog
 ・TailwindCSSかCSS Modulesに書き直す
 ・既存のJavascriptをTypescriptに書き直す
 ```
+
 既にGatsbyCloudにブログサイトをデプロイしているのですが、ドメインがGatsbyCloud独自のフォーマットになっているんですよね。  
 独自ドメインに切り替えたいのですが、GatsbyCloudだけでは独自ドメインに切り替え出来ないそうです。  
 切り替えるにはGatsbyCloudとホスティングサービスとを連携する必要があるみたいです。  

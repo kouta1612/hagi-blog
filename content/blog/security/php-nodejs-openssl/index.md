@@ -7,6 +7,11 @@ date: "2022-03-12"
 tags: ["PHP", "NodeJS", "Security"]
 ---
 
+## 目次
+
+```toc
+```
+
 ## 概要
 
 仕事でデータベースに保存している個人情報を暗号化・復号するにあたって  
@@ -25,7 +30,7 @@ NodeJS は、バイナリデータを扱うために[buffer](https://nodejs.org/
 openssl_encrypt の第 1 引数が今回の暗号化対象文字列で、第 3 引数の passphrase と第 5 引数の iv がキーに該当します。  
 passphrase は 32bit である必要があり、iv は 16bit である必要があります。
 
-```
+```sh
 >>> openssl_encrypt(
     'xxxxxx@gmail.com',
     'aes-256-cbc',
@@ -39,7 +44,7 @@ passphrase は 32bit である必要があり、iv は 16bit である必要が�
 
 次に NodeJS で認証情報を復号します。
 
-```
+```sh
 > const key = new Buffer.from('cJe6y8sbPskC6NNA5ABD20nTtVyQ5etH');
 undefined
 > const iv = new Buffer.from('s968wEYFzxJzenjw');
@@ -60,7 +65,7 @@ undefined
 
 反対に NodeJS で認証情報を暗号化します。
 
-```
+```sh
 > const key = new Buffer.from('cJe6y8sbPskC6NNA5ABD20nTtVyQ5etH');
 undefined
 > const iv = new Buffer.from('s968wEYFzxJzenjw');
@@ -76,7 +81,7 @@ undefined
 
 次に PHP で認証情報を復号します。
 
-```
+```sh
 >>> openssl_decrypt(
     'M1CctVjYqzA1v5hpk7t1hnR5oc5DDpl9j7xdQeK5xnY=',
     'aes-256-cbc', 'cJe6y8sbPskC6NNA5ABD20nTtVyQ5etH',

@@ -54,6 +54,16 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          // 目次を生成する
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "目次",
+            },
+          },
+          // 目次にリンクを付与する
+          `gatsby-remark-autolink-headers`,
+          // コードブロックにシンタックスハイライトを適用する
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
