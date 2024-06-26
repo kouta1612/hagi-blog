@@ -30,9 +30,10 @@ module.exports = {
     },
     // ブログコンテンツ内容をGraphQLに取り込む
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
           // 新規タブリンクを生成
           {
             resolve: "gatsby-remark-external-links",
@@ -54,15 +55,6 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          // 目次を生成する
-          {
-            resolve: `gatsby-remark-table-of-contents`,
-            options: {
-              exclude: "目次",
-            },
-          },
-          // 目次にリンクを付与する
-          `gatsby-remark-autolink-headers`,
           // コードブロックにシンタックスハイライトを適用する
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
@@ -91,8 +83,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
@@ -103,10 +95,9 @@ module.exports = {
               })
             },
             query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+              allMdx(sort: {frontmatter: {date: DESC}}) {
                 nodes {
                   excerpt
-                  html
                   fields {
                     slug
                   }

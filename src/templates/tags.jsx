@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const Tags = ({ pageContext, data, location }) => {
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMdx.nodes
   const siteTitle = data.site.siteMetadata.title
   const tagTitle = `「${pageContext.tag}」に関する記事一覧`
 
@@ -53,7 +53,7 @@ const pageQuery = graphql`query ($tag: String) {
       title
     }
   }
-  allMarkdownRemark(
+  allMdx(
     limit: 2000
     sort: {frontmatter: {date: DESC}}
     filter: {frontmatter: {tags: {in: [$tag]}}}

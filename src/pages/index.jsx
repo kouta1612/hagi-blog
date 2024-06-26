@@ -8,7 +8,7 @@ import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMdx.nodes
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
@@ -58,7 +58,7 @@ export const pageQuery = graphql`{
       title
     }
   }
-  allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+  allMdx(sort: {frontmatter: {date: DESC}}) {
     nodes {
       fields {
         slug

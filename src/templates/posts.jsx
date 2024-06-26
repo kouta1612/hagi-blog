@@ -6,8 +6,8 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogPostTemplate = ({ data, location }) => {
-  const post = data.markdownRemark
+const BlogPostTemplate = ({ data, location, children }) => {
+  const post = data.mdx
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = data
 
@@ -22,10 +22,7 @@ const BlogPostTemplate = ({ data, location }) => {
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
+        <section itemProp="articleBody">{children}</section>
         <hr />
         <footer>
           <Bio />
@@ -64,7 +61,7 @@ const BlogPostTemplate = ({ data, location }) => {
 export default BlogPostTemplate
 
 export const Head = ({data}) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const imagePath = getSrc(post.frontmatter.image.childImageSharp.gatsbyImageData)
   return <Seo title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={imagePath} />
 }
@@ -78,10 +75,9 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    markdownRemark(id: {eq: $id}) {
+    mdx(id: {eq: $id}) {
       id
       excerpt(pruneLength: 160)
-      html
       frontmatter {
         title
         date(formatString: "YYYY/MM/DD")
@@ -94,7 +90,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    previous: markdownRemark(id: {eq: $previousPostId}) {
+    previous: mdx(id: {eq: $previousPostId}) {
       fields {
         slug
       }
@@ -102,7 +98,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: {eq: $nextPostId}) {
+    next: mdx(id: {eq: $nextPostId}) {
       fields {
         slug
       }

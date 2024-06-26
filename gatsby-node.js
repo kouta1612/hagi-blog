@@ -5,23 +5,24 @@ const fs = require("fs")
 
 // ブログページを動的に作成する
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
-
-  const blogTemplate = path.resolve("./src/templates/posts.jsx")
-  // const tagTemplate = path.resolve(`./src/templates/tags.jsx`)
-
   const result = await graphql(`{
-    postRemark: allMarkdownRemark(sort: {frontmatter: {date: ASC}}, limit: 1000) {
+    postMdx: allMdx(sort: {frontmatter: {date: ASC}}, limit: 1000) {
       nodes {
         id
         fields {
           slug
         }
+        internal {
+          contentFilePath
+        }
       }
     }
-    # tagRemark: allMarkdownRemark(limit: 2000) {
+    # tagMdx: allMdx(limit: 2000) {
     #   group(field: {frontmatter: {tags: SELECT}}) {
     #     fieldValue
+    #     internal {
+    #       contentFilePath
+    #     }
     #   }
     # }
   }`)
@@ -34,7 +35,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.postRemark.nodes
+  const { createPage } = actions
+
+  const posts = result.data.postMdx.nodes
+  const postTemplate = path.resolve("./src/templates/posts.jsx")
 
   posts.forEach((post, index) => {
     const previousPostId = index === 0 ? null : posts[index - 1].id
@@ -42,7 +46,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     createPage({
       path: post.fields.slug,
-      component: blogTemplate,
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
       context: {
         id: post.id,
         previousPostId,
@@ -51,12 +55,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  // const tags = result.data.tagRemark.group
+  // const tags = result.data.tagMdx.group
+  // const tagTemplate = path.resolve(`./src/templates/tags.jsx`)
 
   // tags.forEach(tag => {
   //   createPage({
   //     path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-  //     component: tagTemplate,
+  //     component: `${tagTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
   //     context: {
   //       tag: tag.fieldValue,
   //     },
@@ -67,7 +72,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === "MarkdownRemark") {
+  if (node.internal.type === "Mdx") {
     const value = createFilePath({ node, getNode })
 
     createNodeField({
