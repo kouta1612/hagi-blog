@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { getSrc } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -64,24 +65,20 @@ export default BlogPostTemplate
 
 export const Head = ({data}) => {
   const post = data.markdownRemark
-  const image = `${data.site.siteMetadata.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
-  return <Header title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={image} />
+  const imagePath = getSrc(post.frontmatter.image.childImageSharp.gatsbyImageData)
+  return <Header title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={imagePath} />
 }
 
 // 下記graphQLクエリで取得されるデータが、上のBlogPostTemplate関数の引数dataに渡される
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
+  query BlogPostById($id: String!, $previousPostId: String, $nextPostId: String) {
     site {
       siteMetadata {
         title
         siteUrl
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    markdownRemark(id: {eq: $id}) {
       id
       excerpt(pruneLength: 160)
       html
@@ -92,14 +89,12 @@ export const pageQuery = graphql`
         tags
         image {
           childImageSharp {
-            fluid {
-              src
-            }
+            gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
           }
         }
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: markdownRemark(id: {eq: $previousPostId}) {
       fields {
         slug
       }
@@ -107,7 +102,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: markdownRemark(id: {eq: $nextPostId}) {
       fields {
         slug
       }
