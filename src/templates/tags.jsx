@@ -1,17 +1,16 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import Header from "../components/header"
+import Seo from "../components/seo"
 
 const Tags = ({ pageContext, data, location }) => {
-  const { tag } = pageContext
   const posts = data.allMarkdownRemark.nodes
   const siteTitle = data.site.siteMetadata.title
-  const tagHeader = `【${tag}】に関する記事一覧`
+  const tagTitle = `「${pageContext.tag}」に関する記事一覧`
 
   return (
     <Layout location={location} title={siteTitle}>
-      <h1>{tagHeader}</h1>
+      <h1>{tagTitle}</h1>
       <ul style={{ listStyle: `none` }}>
         {posts.map(post => {
           return (
@@ -44,9 +43,8 @@ const Tags = ({ pageContext, data, location }) => {
 export default Tags
 
 export const Head = ({ pageContext }) => {
-  const { tag } = pageContext
-  const tagHeader = `【${tag}】に関する記事一覧`
-  return <Header title={tagHeader} description={tagHeader} />
+  const tagTitle = `「${pageContext.tag}」に関する記事一覧`
+  return <Seo title={tagTitle} description={tagTitle} />
 }
 
 const pageQuery = graphql`query ($tag: String) {

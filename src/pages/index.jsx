@@ -4,7 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import Header from "../components/header"
+import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -49,7 +49,7 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const Head = () => {
-  return <Header title="ホーム" description="都内のベンチャーでWebエンジニアをしています。" />
+  return <Seo title="ホーム" description="都内のベンチャーでWebエンジニアをしています。" />
 }
 
 export const pageQuery = graphql`{

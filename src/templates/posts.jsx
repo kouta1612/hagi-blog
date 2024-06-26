@@ -4,7 +4,7 @@ import { getSrc } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import Header from "../components/header"
+import Seo from "../components/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -66,7 +66,7 @@ export default BlogPostTemplate
 export const Head = ({data}) => {
   const post = data.markdownRemark
   const imagePath = getSrc(post.frontmatter.image.childImageSharp.gatsbyImageData)
-  return <Header title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={imagePath} />
+  return <Seo title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} image={imagePath} />
 }
 
 // 下記graphQLクエリで取得されるデータが、上のBlogPostTemplate関数の引数dataに渡される

@@ -2,24 +2,22 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import ogp_image from "../images/cat.jpg"
 
-const Header = ({ title, description, image }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-            }
-            lang
-            siteUrl
+const Seo = ({ title, description, image }) => {
+  const { site } = useStaticQuery(graphql`
+    query SeoQuery {
+      site {
+        siteMetadata {
+          title
+          description
+          social {
+            twitter
           }
+          lang
+          siteUrl
         }
       }
-    `
-  )
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata.title
@@ -44,4 +42,4 @@ const Header = ({ title, description, image }) => {
   )
 }
 
-export default Header
+export default Seo
