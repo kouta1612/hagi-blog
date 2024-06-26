@@ -41,14 +41,14 @@ const Bio = () => {
           <p>{author.summary}</p>
         </div>
         <div>
-          <a href={`https://twitter.com/${social.twitter}`} target="blank">
+          <a href={`https://twitter.com/${social.twitter}`} target="blank" aria-label="Twitter">
             <FontAwesomeIcon
               style={{ height: "1.5em", width: "1.5em", marginRight: "5" }}
               color="#3eaded"
               icon={faTwitter}
             />
           </a>
-          <a href="https://github.com/kouta1612" target="blank">
+          <a href="https://github.com/kouta1612" target="blank" aria-label="GitHub">
             <FontAwesomeIcon
               style={{ height: "1.5em", width: "1.5em", marginRight: "5" }}
               color="#333"
