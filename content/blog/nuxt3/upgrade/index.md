@@ -22,7 +22,7 @@ Piniaは現在公式が推奨しているストアライブラリで、コンポ
 Vuexと比較して、PiniaはシンプルなAPIとComposition-APIスタイルのAPIを提供し、TypeScriptで使用したときにしっかりとした型推論をサポートしています。
 下記に記載した公式サンプルコードのように、storeでデータやメソッドを定義して、コンポーネント側で定義したストアを利用します。
 
-```Nuxt3
+```ts
 // ストアを定義するところ
 import { defineStore } from 'pinia'
 
@@ -39,7 +39,7 @@ export const useCounterStore = defineStore('counter', {
 
 ```
 
-```Nuxt3
+```ts
 // ストアを利用するコンポーネント
 import { useCounterStore } from '@/stores/counter'
 
@@ -64,7 +64,7 @@ HTTPリクエストを利用するのにaxiosからohmyfetchに更新しまし�
 SSRとCSRでリクエストホストを自動的に変えたり、レスポンス情報にアクセスしたい場合は、[オプションを付与して生成されたインスタンスをグローバルに呼べるようにしたり](https://github.com/unjs/ohmyfetch#%EF%B8%8F-create-fetch-with-default-options)、[$fetch.rawで生成されたインスタンスを返す](https://github.com/unjs/ohmyfetch#-access-to-raw-response)ようライブラリ化したものを使うようにしたら便利かと思います。
 新規プロジェクトでは下記のようなコードを実装し、各コンポーネントで利用しています。（最初はレスポンス情報にset-cookieを付与していましたが、Piniaを導入してからエラーになりset-cookieを付与しないようにしたら正常に機能したので、現状は$fetch.rawの箇所に特別な処理は書いてないです。）
 
-```Nuxt3
+```ts
 // @/composables/useApi.ts
 import { UseFetchOptions } from '#app';
 import { NitroFetchRequest } from 'nitropack';
@@ -113,7 +113,7 @@ export const useApi = async <T>(
 
 ```
 
-```Nuxt3
+```ts
 // 上記ライブラリを利用する
 <script setup lang="ts">
 const data = await useApi('/api/json');
